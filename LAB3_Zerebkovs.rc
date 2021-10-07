@@ -57,7 +57,7 @@ FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "Exit",IDOK,7,219,50,14
     CTEXT           "00:00:00",IDC_CLOCK,15,20,87,13
-    PUSHBUTTON      "",IDC_PAUSE,130,15,23,22,BS_BITMAP,WS_EX_DLGMODALFRAME
+    PUSHBUTTON      "",IDC_PAUSE,130,15,23,22,BS_ICON,WS_EX_DLGMODALFRAME
     GROUPBOX        "Program To Run",IDC_STATIC,14,50,139,38,0,WS_EX_DLGMODALFRAME
     EDITTEXT        IDC_COMMANDLINE,25,65,93,14,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_BROWSE,126,63,17,17
@@ -101,10 +101,14 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// PNG
+// Icon
 //
 
-IDB_PNG1                PNG                     "C:\\Users\\Tom\\Desktop\\media_pause.png"
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "C:\\Users\\Tom\\Desktop\\Pause_48x48.ico"
+
+IDI_ICON2               ICON                    "C:\\Users\\Tom\\Desktop\\Play_24x24.ico"
 
 #endif    // English (United Kingdom) resources
 /////////////////////////////////////////////////////////////////////////////

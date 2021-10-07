@@ -3,7 +3,8 @@
 // Used by LAB3_Zerebkovs.rc
 //
 #define IDD_MAINDIALOG                  101
-#define IDB_PNG1                        103
+#define IDI_ICON1                       110
+#define IDI_ICON2                       114
 #define IDC_PAUSE                       1001
 #define IDC_CLOCK                       1002
 #define IDC_COMMANDLINE                 1003
@@ -17,7 +18,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        104
+#define _APS_NEXT_RESOURCE_VALUE        115
 #define _APS_NEXT_COMMAND_VALUE         40001
 #define _APS_NEXT_CONTROL_VALUE         1009
 #define _APS_NEXT_SYMED_VALUE           101

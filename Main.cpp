@@ -12,7 +12,7 @@
 
 BOOL CALLBACK MainWndProc(HWND, UINT, WPARAM, LPARAM);
 
-enum Color { RED, BLUE };
+enum Color { GREEN, BLUE };
 
 Color clockColor = BLUE;
 
@@ -27,9 +27,16 @@ bool ClockPaused = false;
 HFONT font;
 
 
+
+HICON pauseIcon;
+HICON playIcon;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int) {
 
-	font = CreateFont(25, 0, 0, 0, 900, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Arial");
+	pauseIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(IDI_ICON1), IMAGE_ICON, 48, 48, LR_DEFAULTCOLOR);
+	playIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(IDI_ICON2), IMAGE_ICON, 24, 24, LR_DEFAULTCOLOR);
+	
+	font = CreateFont(26, 0, 0, 0, 900, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Arial");
 	DialogBox(hInstance, MAKEINTRESOURCE(IDD_MAINDIALOG), NULL, MainWndProc);
 	return 0;
 }
@@ -53,17 +60,20 @@ DWORD WINAPI ClockThread(LPVOID lpParameter) {
 void HandleClockPause() {
 	if (ClockPaused) {
 		
-
 		ResumeThread(hClock);
 		clockColor = BLUE;
 		ClockPaused = false;
+		SendDlgItemMessage(hMainWnd, IDC_PAUSE, BM_SETIMAGE, (WPARAM)IMAGE_ICON, (LPARAM)pauseIcon);
 	}
 	else {
 
 		SuspendThread(hClock);
-		clockColor = RED;
+		clockColor = GREEN;
 		ClockPaused = true;
+		
+		SendDlgItemMessage(hMainWnd, IDC_PAUSE, BM_SETIMAGE, (WPARAM)IMAGE_ICON, (LPARAM)playIcon);
 	}
+	InvalidateRect(GetDlgItem(hMainWnd, IDC_CLOCK), NULL, true);
 }
 
 void DeleteItemFromList(int index) {
@@ -229,7 +239,7 @@ BOOL CALLBACK MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) {
 	case WM_INITDIALOG:
 		hMainWnd = hWnd;
 		hClock = CreateThread(NULL, 0, ClockThread, NULL, 0, NULL);
-		
+		SendDlgItemMessage(hMainWnd, IDC_PAUSE, BM_SETIMAGE, (WPARAM)IMAGE_ICON, (LPARAM)pauseIcon);
 
 		return TRUE;
 	case WM_COMMAND:
@@ -261,10 +271,10 @@ BOOL CALLBACK MainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) {
 			SendMessage(clock, WM_SETFONT, (LPARAM)font, TRUE);
 
 			if (clockColor == BLUE) {
-				SetTextColor((HDC)wParam, RGB(0, 250, 171));
+				SetTextColor((HDC)wParam, RGB(66, 102, 245));
 			}
-			else if (clockColor == RED) {
-				SetTextColor((HDC)wParam, RGB(255, 255, 171));
+			else if (clockColor == GREEN) {
+				SetTextColor((HDC)wParam, RGB(78, 245, 66));
 			}
 
 			return (BOOL)GetSysColorBrush(COLOR_MENU);

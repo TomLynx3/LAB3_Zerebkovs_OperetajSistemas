@@ -148,7 +148,15 @@
     <ResourceCompile Include="LAB3_Zerebkovs.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="C:\Users\Tom\Desktop\media_pause.png" />
+    <Image Include="bitmap1.bmp" />
+    <Image Include="C:\Users\Tom\Desktop\Pause_48x48 (1).bmp" />
+    <Image Include="C:\Users\Tom\Desktop\Pause_48x48.bmp" />
+    <Image Include="C:\Users\Tom\Desktop\Pause_48x48.ico" />
+    <Image Include="C:\Users\Tom\Desktop\Pause_48x48.png" />
+    <Image Include="C:\Users\Tom\Desktop\Play_24x24.ico" />
+    <Image Include="C:\Users\Tom\Desktop\Play_48x48.ico" />
+    <Image Include="C:\Users\Tom\Desktop\Play_48x48.png" />
+    <Image Include="C:\Users\Tom\Desktop\sample_640×426.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
